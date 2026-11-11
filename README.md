@@ -36,10 +36,28 @@
 
 預期網址：<https://winniewang3588-hub.github.io/eva/>。實際可用狀態以 GitHub Pages 部署結果為準。
 
+## PWA：安裝到主畫面與離線使用
+
+手機網址：<https://winniewang3588-hub.github.io/eva/>。
+
+[下載手機掃描用 QR Code](文件/報修登記PWA-QR.png)（連結與 QR Code 指向相同網址；實際上線以 GitHub Pages 部署結果為準）。
+
+- 網頁包含 `manifest.webmanifest`、`sw.js`、`pwa.js` 與手機圖示，支援 GitHub Pages 的 `/eva/` 子路徑；不需要建置工具或修改資料庫。
+- 請以 HTTPS（正式網站）或 localhost（開發）開啟，先連線造訪一次，讓 Service Worker 安裝及快取介面。直接用 `file://` 開啟不支援離線安裝。
+- Android Chrome／Edge 等瀏覽器符合安裝條件時，頁面會出現「安裝到主畫面」；也可使用瀏覽器選單的「安裝應用程式／加入主畫面」。iPhone／iPad 請用 Safari 的「分享 → 加入主畫面」。安裝後以獨立視窗開啟；各系統的選單名稱可能不同。
+- 離線可重開已快取的介面並填寫表單，但無法送出或重新讀取清單；必須連線後手動操作。連線恢復不會自動送出，也沒有背景同步或離線待送佇列。
+- 表單草稿僅留在目前頁面記憶體，重新整理、更新或關閉會遺失。報修清單不存入 Cache Storage、localStorage 或 IndexedDB；同一頁若保留舊清單，會提示它不是最新資料，離線重開時不會還原清單。
+- 只快取固定介面檔案、圖示、公開設定與通過完整性校驗的固定版 Supabase SDK，不快取 Supabase API 回應或 Office 文件。若 CDN 首次取用失敗，仍可離線開啟介面，但報修服務須待連線後重新整理才可啟用。
+- 有新版本時顯示「更新應用程式」，不會自動重新載入；請先完成或記下表單再按更新。每次變更介面或快取檔案都必須遞增 `sw.js` 的 `CACHE_NAME` 版本；更新 SDK 時也須同步 URL 與 SRI。舊版快取僅清理本應用程式、相同 scope 的項目，不影響其他專案。
+
+手機確認：先在線上開啟並安裝，關閉後從主畫面重開；再開啟飛航模式，確認仍看到介面與離線提示，且送出／重新整理按鈕停用。恢復連線後先確認資料再手動送出；PWA 不代表正式 Supabase 連線與權限已驗證。
+
 ## 驗證
 
 - `node --check app.js`、`node --check config.js`：JavaScript 語法檢查。
+- `node --check pwa.js`、`node --check sw.js`：PWA 與 Service Worker 語法檢查。
 - `git diff --check`：差異空白檢查。
 - 已使用 Chromium 與 Playwright，在 390px／1280px 寬度，以攔截的 Supabase 回應測試空清單、20 筆清單、排序及筆數參數、送出欄位、重複送出防護、成功清空、錯誤保留、重新整理及純文字呈現。
 - 緊急程度篩選已另外測試 320px／390px／1280px 顯示、至少 44px 按鈕、選取樣式與鍵盤操作、切換不增加請求、刷新保留篩選、空結果與錯誤狀態，以及紅色「高」標籤。
+- PWA 已用 Chromium 的一般持久化設定檔檢查安裝條件，並以真正的 Service Worker 驗證 `/` 與 `/eva/`：離線重開、SDK 快取、API／文件不快取、離線停用送出、連線恢復不自動送出、新版待命與手動更新、舊快取清理及 CDN 失敗時的介面備援；手機原生安裝操作仍需在實機確認。
 - 瀏覽器測試沒有寫入正式資料庫；此雲端環境的真實 Supabase 唯讀連線遭代理回覆 403，正式資料表與權限尚未完成端到端驗證。

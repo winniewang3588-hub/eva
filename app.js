@@ -23,6 +23,28 @@
   let requests = [];
   let hasLoaded = false;
   let selectedUrgency = "全部";
+  let wasOffline = false;
+
+  function updateConnection() {
+    const offline = !navigator.onLine;
+    submitButton.disabled = offline || !client;
+    refreshButton.disabled = offline || loading || submitting || !client;
+    if (!client) fields.disabled = !offline;
+    message(document.querySelector("#connection-message"), offline
+      ? "目前離線：可填寫表單，但無法送出或重新讀取清單。畫面若有資料，僅為本次開啟期間已載入的內容；連線恢復後請按「重新整理」。"
+      : "");
+    if (offline) {
+      message(listMessage, "目前離線，清單不會自動更新；請連線後按「重新整理」。");
+    } else if (wasOffline) {
+      message(listMessage, client
+        ? "連線已恢復，請按「重新整理」取得最新清單。"
+        : "連線已恢復，請重新整理整個頁面載入報修服務。");
+    }
+    wasOffline = offline;
+  }
+
+  window.addEventListener("online", updateConnection);
+  window.addEventListener("offline", updateConnection);
 
   function message(element, text, kind = "") {
     element.textContent = text;
@@ -106,6 +128,11 @@
   }
 
   async function fetchRequests() {
+    if (!navigator.onLine) {
+      message(listMessage, "目前離線，清單不會自動更新；請連線後按「重新整理」。");
+      updateConnection();
+      return;
+    }
     loading = true;
     refreshButton.disabled = true;
     list.setAttribute("aria-busy", "true");
@@ -128,13 +155,17 @@
     } finally {
       loading = false;
       list.setAttribute("aria-busy", "false");
-      refreshButton.disabled = submitting;
+      updateConnection();
     }
   }
 
   form.addEventListener("submit", async event => {
     event.preventDefault();
     if (submitting || !client || !form.reportValidity()) return;
+    if (!navigator.onLine) {
+      message(formMessage, "目前離線，尚未送出；請保持此頁開啟，連線後再手動送出。", "error");
+      return;
+    }
     const input = new FormData(form);
     // 僅送出獲准新增的五個內容欄位；不傳 status、id 或 created_at。
     const payload = Object.fromEntries(["reporter_name", "location", "category", "description", "urgency"]
@@ -165,12 +196,13 @@
     } finally {
       submitting = false;
       fields.disabled = false;
-      refreshButton.disabled = loading;
+      updateConnection();
       submitButton.textContent = "送出報修 ↗";
     }
   });
 
   refreshButton.addEventListener("click", loadRequests);
+  updateConnection();
   try {
     const config = window.REPAIR_CONFIG;
     if (!window.supabase?.createClient || !config?.supabaseUrl || !config?.supabasePublishableKey?.startsWith("sb_publishable_")) {
@@ -180,12 +212,17 @@
       auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     });
     fields.disabled = false;
+    updateConnection();
     loadRequests();
   } catch {
-    fields.disabled = true;
+    fields.disabled = navigator.onLine;
     refreshButton.disabled = true;
     list.setAttribute("aria-busy", "false");
-    message(formMessage, "報修服務尚未載入，請確認網路後重新整理此頁。", "error");
-    message(listMessage, "目前無法載入清單，請稍後重新整理此頁。", "error");
+    message(formMessage, navigator.onLine
+      ? "報修服務尚未載入，請確認網路後重新整理此頁。"
+      : "報修服務尚未載入，內容不會自動送出；連線後請重新整理頁面，再手動送出。", "error");
+    message(listMessage, navigator.onLine
+      ? "目前無法載入清單，請稍後重新整理此頁。"
+      : "目前離線，無法讀取清單；報修資料不會儲存在離線快取。");
   }
 })();

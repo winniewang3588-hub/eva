@@ -147,6 +147,27 @@ h1 {
   padding-left:12px;
   border-left:3px solid #bacb9a;
 }
+.pwa-tools,
+.pwa-update {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+.pwa-tools p,
+.pwa-update p {
+  flex: 1 1 230px;
+  margin: 0;
+}
+.pwa-update {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 14px;
+  line-height: 1.8;
+}
 .form-panel {
   background:var(--white);
   border:1px solid var(--line);

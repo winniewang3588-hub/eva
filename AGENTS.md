@@ -17,6 +17,8 @@
 
 - `index.html`、`style.css`、`app.js`、`config.js` 放在根目錄；靜態資源採相對路徑，支援 GitHub Pages 專案子目錄。
 - `文件/` 存放交付文件；`supabase/` 存放資料庫 SQL。
+- PWA 使用 `manifest.webmanifest`、`pwa.js`、`sw.js` 與 `icons/`，scope 與資源路徑必須支援 GitHub Pages 子目錄。
+- 修改介面或預先快取檔案時遞增 `sw.js` 的快取版本。只快取固定介面與經 SRI 驗證的 SDK，不快取 Supabase API、報修內容或 Office 文件；不新增自動離線送出。
 - README.md 記錄本機預覽、Supabase 前置條件、部署及驗證方式，變更流程時同步更新。
 - 排除依賴、建置產物、暫存檔及本機機密設定；不為前端加入不必要的套件或建置工具。
 
@@ -24,5 +26,6 @@
 
 - 本機預覽：儲存庫根目錄執行 `python3 -m http.server 8000`。
 - 已驗證語法指令：`node --check app.js`、`node --check config.js`；差異檢查：`git diff --check`。
+- PWA 需另檢查 `node --check pwa.js`、`node --check sw.js`，並用真正的 Service Worker 驗證根目錄／子路徑、離線重開、更新待命與快取清理；模擬 API 不等於正式資料庫已可用。
 - 瀏覽器驗證應涵蓋手機版、空清單、清單載入失敗、送出成功與失敗、重複送出及文字安全呈現。
 - 完成時簡述變更、驗證結果與限制，清楚區分攔截回應測試、正式 Supabase 驗證及 GitHub Pages 部署狀態。
