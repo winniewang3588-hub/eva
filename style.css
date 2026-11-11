@@ -288,6 +288,36 @@ fieldset {
   gap:16px;
   margin-bottom:24px;
 }
+.urgency-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.filter-button {
+  min-height: 44px;
+  min-width: 60px;
+  padding: 10px 18px;
+  border: 1px solid #ccd7ca;
+  border-radius: 9px;
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 650;
+}
+.filter-button:hover {
+  background: #eaf0e2;
+}
+.filter-button[aria-pressed="true"] {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+.filter-message {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
 .secondary-button {
   background:transparent;
   color:var(--ink);
@@ -375,7 +405,9 @@ fieldset {
   font-size:11px;
 }
 .urgency-high {
-  color:#a04736;
+  color: #a32323;
+  background: #ffebeb;
+  font-weight: 700;
 }
 .site-footer {
   max-width:1056px;
