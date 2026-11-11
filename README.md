@@ -6,6 +6,8 @@
 
 [報修系統操作說明（Word）](文件/報修系統操作說明.docx)
 
+[報修登記系統提案（PowerPoint）](文件/報修登記系統提案.pptx)
+
 ## 本機預覽
 
 在儲存庫根目錄執行 `python3 -m http.server 8000`，再以瀏覽器開啟 `http://localhost:8000/`。網路必須允許載入 `cdn.jsdelivr.net` 及連線至 `bguhafvrgspwhlspfavx.supabase.co`。
