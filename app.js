@@ -8,6 +8,8 @@
   const formMessage = document.querySelector("#form-message");
   const listMessage = document.querySelector("#list-message");
   const list = document.querySelector("#request-list");
+  const filterButtons = document.querySelectorAll("#urgency-filters button");
+  const filterMessage = document.querySelector("#filter-message");
   const categories = new Set(["設備", "網路", "環境", "其他"]);
   const urgencies = new Set(["低", "中", "高"]);
   const statusClasses = { "待處理": "pending", "處理中": "progress", "已完成": "done" };
@@ -18,6 +20,9 @@
   let submitting = false;
   let loading = false;
   let currentLoad = null;
+  let requests = [];
+  let hasLoaded = false;
+  let selectedUrgency = "全部";
 
   function message(element, text, kind = "") {
     element.textContent = text;
@@ -49,10 +54,39 @@
       time.dateTime = date.toISOString();
       time.textContent = `${formatter.format(date)}（台北）`;
     }
-    bottom.append(element("span", request.urgency === "高" ? "urgency-high" : "", `緊急程度：${request.urgency}`), time);
+    bottom.append(element("span", request.urgency === "高" ? "badge urgency-high" : "badge", `緊急程度：${request.urgency}`), time);
     item.append(top, element("p", "card-description", request.description), meta, bottom);
     return item;
   }
+
+  // 篩選只使用已載入的最近 20 筆，不新增任何資料庫請求，並保留原有排序。
+  function renderRequests() {
+    filterButtons.forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.urgency === selectedUrgency));
+    });
+    if (!hasLoaded) return;
+    const visibleRequests = selectedUrgency === "全部"
+      ? requests
+      : requests.filter(request => request.urgency === selectedUrgency);
+    list.replaceChildren(...visibleRequests.map(card));
+    filterMessage.hidden = false;
+    if (!requests.length) {
+      filterMessage.textContent = "目前還沒有報修，送出第一筆需求吧。";
+    } else if (!visibleRequests.length) {
+      filterMessage.textContent = `最近 20 筆中沒有緊急程度「${selectedUrgency}」的報修。`;
+    } else {
+      filterMessage.textContent = selectedUrgency === "全部"
+        ? `顯示最近 ${visibleRequests.length} 筆報修`
+        : `顯示緊急程度「${selectedUrgency}」的 ${visibleRequests.length} 筆報修（限最近 20 筆）`;
+    }
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      selectedUrgency = button.dataset.urgency;
+      renderRequests();
+    });
+  });
 
   // 設定等待上限；中斷寫入時不自動重送，避免產生重複報修。
   async function withTimeout(operation) {
@@ -85,8 +119,10 @@
         .limit(20)
         .abortSignal(signal));
       if (error) throw error;
-      list.replaceChildren(...(data || []).map(card));
-      message(listMessage, data?.length ? "" : "目前還沒有報修，送出第一筆需求吧。");
+      requests = data || [];
+      hasLoaded = true;
+      renderRequests();
+      message(listMessage, "");
     } catch {
       message(listMessage, "清單載入失敗，請確認網路後按「重新整理」。若下方仍有資料，為先前載入的內容。", "error");
     } finally {
