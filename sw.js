@@ -3,12 +3,13 @@
 // 每次修改介面或快取清單時，須遞增版本，並同步更新 HTML 中 CSS／JS 的 ?v= 參數。快取名稱含 scope，避免影響同網域其他專案。
 const SCOPE_PATH = new URL(self.registration.scope).pathname;
 const CACHE_PREFIX = `tokyo-trip-pwa:${SCOPE_PATH}:`;
-const CACHE_NAME = `${CACHE_PREFIX}v4`;
+const CACHE_NAME = `${CACHE_PREFIX}v5`;
 // 本網址先前為報修登記 PWA；清除其舊快取，避免占用空間。
 const LEGACY_PREFIXES = [`repair-pwa:${SCOPE_PATH}:`];
 const SHELL_URLS = [
   "./", "./index.html", "./style.css", "./app.js", "./pwa.js",
   "./hokkaido.html", "./hokkaido.js", "./kyushu.html", "./kyushu.js", "./menu.js",
+  "./nagoya.html", "./nagoya.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png",
 ].map(path => new URL(path, self.registration.scope).href);

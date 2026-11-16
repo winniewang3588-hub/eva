@@ -238,6 +238,7 @@ h3 { font-size:17px; margin:0; }
 /* 北海道頁 */
 .page-hokkaido .brand-mark { background:#2f6f9f; }
 .page-kyushu .brand-mark { background:#2e7d5b; }
+.page-nagoya .brand-mark { background:#b8862b; }
 .day-tabs-6 { grid-template-columns:repeat(6,1fr); }
 .season-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .season-card {
