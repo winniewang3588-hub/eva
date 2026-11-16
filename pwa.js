@@ -40,12 +40,12 @@
   });
 
   if (!("serviceWorker" in navigator) || !window.isSecureContext) {
-    status.textContent = "此環境無法啟用離線功能；請透過 HTTPS 或 localhost 開啟。";
+    status.textContent = "此環境無法啟用離線瀏覽；請透過 HTTPS 或 localhost 開啟。";
     status.hidden = false;
     return;
   }
 
-  // 僅在使用者按更新後重新載入，避免新版本自動清掉正在填寫的表單。
+  // 僅在使用者按更新後重新載入，避免新版本突然打斷瀏覽。
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (refreshing) window.location.reload();
   });
@@ -68,7 +68,7 @@
       });
     })
     .catch(() => {
-      status.textContent = "離線功能尚未準備好；目前仍可在線上使用，請連線後重新整理。";
+      status.textContent = "離線瀏覽尚未準備好；目前仍可在線上使用，請連線後重新整理。";
       status.hidden = false;
     });
 })();
