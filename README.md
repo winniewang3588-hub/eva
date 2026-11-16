@@ -65,7 +65,8 @@
 
 ## PWA：安裝到主畫面與離線瀏覽
 
-- 使用 `manifest.webmanifest`、`sw.js`、`pwa.js` 與 `icons/`，支援 `/eva/` 子路徑。
+- 使用 `manifest.webmanifest`、`sw.js`、`pwa.js` 與 `icons/`，支援 `/eva/` 子路徑。安裝後的 App 名稱為「日本自由行」，圖示為五重塔插圖（自行繪製，無外部授權問題）。
+- 已安裝舊版（例如「報修登記」或「東京自由行」）的裝置不一定會自動更新名稱與圖示：Android 通常會在開啟 App 後的一段時間內自動更新；iPhone／iPad 需刪除主畫面上的舊圖示，再從 Safari「分享 → 加入主畫面」重新加入。
 - 以 HTTPS（正式網站）或 localhost（開發）開啟一次後，Service Worker 會快取整個介面；之後離線（例如在日本沒網路時）也能開啟並使用所有功能。`file://` 不支援。
 - Android Chrome／Edge 符合條件時會出現「安裝到主畫面」按鈕；iPhone／iPad 請用 Safari「分享 → 加入主畫面」。
 - 有新版本時顯示「更新指南」，不會自動重新載入。每次變更介面或快取清單都必須遞增 `sw.js` 的 `CACHE_NAME` 版本，並同步更新各頁 HTML 引用 CSS／JS 時的 `?v=` 參數，避免瀏覽器用到舊的快取樣式。
