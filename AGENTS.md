@@ -17,7 +17,7 @@
 
 - `index.html`、`style.css`、`app.js` 放在根目錄；靜態資源採相對路徑，支援 GitHub Pages 專案子目錄。
 - PWA 使用 `manifest.webmanifest`、`pwa.js`、`sw.js` 與 `icons/`，scope 與資源路徑必須支援 GitHub Pages 子目錄。
-- 修改介面或預先快取檔案時遞增 `sw.js` 的快取版本。只快取固定介面檔案，不快取 Office 文件或外部資源。
+- 修改介面或預先快取檔案時遞增 `sw.js` 的快取版本，並同步更新各頁 HTML 中 CSS／JS 的 `?v=` 參數。只快取固定介面檔案，不快取 Office 文件或外部資源。
 - README.md 記錄功能、本機預覽、部署及驗證方式，變更流程時同步更新。
 - 排除依賴、建置產物、暫存檔及本機機密設定；不為前端加入不必要的套件或建置工具。
 

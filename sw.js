@@ -1,9 +1,9 @@
 "use strict";
 
-// 每次修改介面或快取清單時，須遞增版本。快取名稱含 scope，避免影響同網域其他專案。
+// 每次修改介面或快取清單時，須遞增版本，並同步更新 HTML 中 CSS／JS 的 ?v= 參數。快取名稱含 scope，避免影響同網域其他專案。
 const SCOPE_PATH = new URL(self.registration.scope).pathname;
 const CACHE_PREFIX = `tokyo-trip-pwa:${SCOPE_PATH}:`;
-const CACHE_NAME = `${CACHE_PREFIX}v3`;
+const CACHE_NAME = `${CACHE_PREFIX}v4`;
 // 本網址先前為報修登記 PWA；清除其舊快取，避免占用空間。
 const LEGACY_PREFIXES = [`repair-pwa:${SCOPE_PATH}:`];
 const SHELL_URLS = [

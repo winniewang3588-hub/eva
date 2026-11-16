@@ -28,7 +28,7 @@
 
 ### 地點下拉選單
 
-- 頁首的「📍 地點」按鈕以 `<details>` 製作，沒有 JavaScript 也能展開；`menu.js` 補上點選單外或按 Esc 收合。目前頁面以深底標示並設定 `aria-current="page"`。
+- 頁首的「📍 日本 ▾」按鈕以 `<details>` 製作，沒有 JavaScript 也能展開；`menu.js` 補上點選單外或按 Esc 收合。目前頁面以深底標示並設定 `aria-current="page"`。
 - 新增地區頁時，三頁的選單項目都要同步加上，並把新檔案加入 `sw.js` 快取清單、遞增版本。
 
 - 內容僅供參考；票價、時刻、營業時間與入境／免稅規定請以官方公告為準。
@@ -48,7 +48,7 @@
 - 使用 `manifest.webmanifest`、`sw.js`、`pwa.js` 與 `icons/`，支援 `/eva/` 子路徑。
 - 以 HTTPS（正式網站）或 localhost（開發）開啟一次後，Service Worker 會快取整個介面；之後離線（例如在日本沒網路時）也能開啟並使用所有功能。`file://` 不支援。
 - Android Chrome／Edge 符合條件時會出現「安裝到主畫面」按鈕；iPhone／iPad 請用 Safari「分享 → 加入主畫面」。
-- 有新版本時顯示「更新指南」，不會自動重新載入。每次變更介面或快取清單都必須遞增 `sw.js` 的 `CACHE_NAME` 版本。
+- 有新版本時顯示「更新指南」，不會自動重新載入。每次變更介面或快取清單都必須遞增 `sw.js` 的 `CACHE_NAME` 版本，並同步更新三頁 HTML 引用 CSS／JS 時的 `?v=` 參數，避免瀏覽器用到舊的快取樣式。
 - 本網址先前是報修登記 PWA；新版 Service Worker 啟用時會清除舊的 `repair-pwa:` 快取。舊使用者需按一次「更新」才會換成新版。
 
 ## 舊專案檔案
