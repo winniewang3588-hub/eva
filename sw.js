@@ -9,7 +9,7 @@ const LEGACY_PREFIXES = [`repair-pwa:${SCOPE_PATH}:`];
 const SHELL_URLS = [
   "./", "./index.html", "./style.css", "./app.js", "./pwa.js",
   "./hokkaido.html", "./hokkaido.js", "./kyushu.html", "./kyushu.js", "./menu.js",
-  "./nagoya.html", "./nagoya.js",
+  "./nagoya.html", "./nagoya.js", "./expenses.js", "./photos.js",
   "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png",
   "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png",
 ].map(path => new URL(path, self.registration.scope).href);
@@ -40,9 +40,22 @@ self.addEventListener("fetch", event => {
   const request = event.request;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
-  // 只快取固定介面檔案；其他請求（例如文件下載）不進快取。
+  // 只快取固定介面檔案與 images/ 下的景點照片；其他請求（例如文件下載）不進快取。
   const shellKey = url.origin === self.location.origin
     ? SHELL_URLS.find(path => new URL(path).pathname === url.pathname) : null;
+  // 景點照片：看過才存入快取（cache-first），離線時可再次顯示；不預先下載全部照片。
+  const imagesPath = new URL("./images/", self.registration.scope).pathname;
+  if (!shellKey && url.origin === self.location.origin && url.pathname.startsWith(imagesPath)) {
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      const cached = await cache.match(url.pathname);
+      if (cached) return cached;
+      const response = await fetch(request);
+      if (response.ok) await cache.put(url.pathname, response.clone());
+      return response;
+    })());
+    return;
+  }
   if (shellKey) {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE_NAME);

@@ -34,6 +34,18 @@
 - **交通攻略**：中部國際機場進市區、地下鐵與一日券、名鐵／近鐵／JR 往近郊。
 - **必吃名古屋美食**與**旅行提醒**（名古屋城天守閣不開放、吉卜力公園需預約等）。資料寫在 `nagoya.js`。
 
+### 景點照片
+
+- 各頁「區域指南」卡片顯示景點照片（目前 41 張，部分區域暫無照片），照片資料與出處集中在 `photos.js`，圖檔為 640px 寬的 WebP，放在 `images/<地區>/`。
+- 照片皆取自 Wikimedia Commons 的自由授權檔案（CC BY／CC BY-SA／CC0／公有領域），每張照片下方標示作者、授權並連結原始檔案頁；新增或替換照片時必須同樣標示。
+- Service Worker 不預先下載全部照片，看過的照片才會存入快取，離線時可再次顯示。
+
+### 花費記帳
+
+- 每頁第 07 區「花費記帳」可隨時新增花費：日期、類別（餐飲／交通／住宿／購物／門票／其他）、項目（選填）與日圓金額（1–10,000,000 的整數）。
+- 依匯率即時換算台幣；匯率四個地區共用，修改後所有台幣金額重新計算。統計顯示本地區合計、所有地區合計、本地區各類別與各地區小計。
+- 每筆可刪除並可立即「復原」；「清除○○紀錄」會先確認。資料存在瀏覽器 localStorage（`trip-expenses:v1`、`trip-expense-rate:v1`），只在這台裝置、這個瀏覽器，不會上傳；清除瀏覽器資料會一併刪除。離線也能記帳。
+
 ### 地點下拉選單
 
 - 頁首的「📍 日本 ▾」按鈕以 `<details>` 製作，沒有 JavaScript 也能展開；`menu.js` 補上點選單外或按 Esc 收合。目前頁面以深底標示並設定 `aria-current="page"`。
@@ -65,7 +77,7 @@
 
 ## 驗證
 
-- `node --check app.js`、`node --check hokkaido.js`、`node --check kyushu.js`、`node --check nagoya.js`、`node --check menu.js`、`node --check pwa.js`、`node --check sw.js`：語法檢查。
+- `node --check app.js`、`node --check hokkaido.js`、`node --check kyushu.js`、`node --check nagoya.js`、`node --check expenses.js`、`node --check photos.js`、`node --check menu.js`、`node --check pwa.js`、`node --check sw.js`：語法檢查。
 - `git diff --check`：差異空白檢查。
-- 已用 Chromium 與 Playwright 在 390px／1280px 檢查東京、北海道、九州、名古屋各頁版面無水平捲動；另測各頁行程分頁、區域篩選與地點下拉選單（切換、Esc／點外面收合）；測試行程分頁（點擊與鍵盤）、區域篩選、預算計算與錯誤輸入提示、清單勾選重新整理後保留與重設。
-- 以真正的 Service Worker 驗證根目錄 `/` 與子路徑 `/eva/` 的快取與離線重開，以及舊 `repair-pwa:` 快取清除、不影響其他快取。手機原生安裝仍需在實機確認。
+- 已用 Chromium 與 Playwright 在 390px／1280px 檢查東京、北海道、九州、名古屋各頁版面無水平捲動；另測各頁行程分頁、區域篩選與地點下拉選單（切換、Esc／點外面收合）；景點照片皆能載入且有替代文字與出處；花費記帳的輸入檢查、換算、統計、匯率修改、刪除與復原、重新整理後保留、清除及跨地區合計，並確認輸入的 HTML 只以文字顯示；測試行程分頁（點擊與鍵盤）、區域篩選、預算計算與錯誤輸入提示、清單勾選重新整理後保留與重設。
+- 以真正的 Service Worker 驗證根目錄 `/` 與子路徑 `/eva/` 的快取與離線重開（含已看過的照片與記帳），以及舊 `repair-pwa:` 快取清除、不影響其他快取。手機原生安裝仍需在實機確認。

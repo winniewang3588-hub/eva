@@ -139,6 +139,8 @@
       const top = element("div", "card-top");
       top.append(element("h3", "", area.name), element("span", "card-tags", area.tags.join("・")));
       item.append(top, element("p", "card-description", area.desc), element("p", "card-meta", `🚉 ${area.access}`));
+      const photo = window.tripPhoto?.("nagoya", area.name);
+      if (photo) { item.prepend(photo); item.classList.add("has-photo"); }
       return item;
     }));
     areaMessage.textContent = selectedTag === "全部"
