@@ -36,7 +36,7 @@ input:focus { outline:2px solid var(--ink); outline-offset:2px; }
 /* 頁首 */
 .site-header {
   max-width:1120px; margin:auto; min-height:92px; padding:20px 32px;
-  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  display:flex; align-items:center; gap:20px;
   border-bottom:1px solid var(--line);
 }
 .brand {
@@ -48,7 +48,33 @@ input:focus { outline:2px solid var(--ink); outline-offset:2px; }
   background:var(--red); color:white; font-size:20px;
 }
 .brand-en { font-size:10px; letter-spacing:.12em; margin-left:5px; color:var(--muted); }
-.site-nav { display:flex; flex-wrap:wrap; gap:4px; }
+.site-nav { display:flex; flex-wrap:wrap; gap:4px; margin-left:auto; }
+
+/* 地點下拉選單 */
+.place-menu { position:relative; z-index:5; }
+.place-menu summary {
+  list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  min-height:44px; padding:8px 14px; border:1px solid #d6cfc3; border-radius:999px;
+  background:var(--white); font-weight:700; font-size:14px; white-space:nowrap;
+}
+.place-menu summary::-webkit-details-marker { display:none; }
+.place-menu summary:hover { background:var(--sakura); }
+.place-menu summary:focus-visible { outline:3px solid #e07a5f; outline-offset:4px; }
+.place-caret { font-size:12px; transition:transform .15s ease; }
+.place-menu[open] .place-caret { transform:rotate(180deg); }
+.place-menu ul {
+  position:absolute; top:calc(100% + 6px); left:0; min-width:180px; margin:0; padding:6px;
+  list-style:none; background:var(--white); border:1px solid var(--line); border-radius:12px;
+  box-shadow:0 12px 30px #1d2a4420;
+}
+.place-menu a {
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  min-height:44px; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:650;
+}
+.place-menu a span { font-size:10px; letter-spacing:.1em; color:var(--muted); font-weight:500; }
+.place-menu a:hover { background:var(--sakura); }
+.place-menu a[aria-current="page"] { background:var(--ink); color:white; }
+.place-menu a[aria-current="page"] span { color:#c9cfdc; }
 .site-nav a {
   text-decoration:none; font-size:14px; padding:10px 12px; border-radius:8px; min-height:44px;
   display:inline-flex; align-items:center;
@@ -211,7 +237,7 @@ h3 { font-size:17px; margin:0; }
 
 /* 北海道頁 */
 .page-hokkaido .brand-mark { background:#2f6f9f; }
-.site-nav .nav-switch { font-weight:700; color:var(--red-dark); }
+.page-kyushu .brand-mark { background:#2e7d5b; }
 .day-tabs-6 { grid-template-columns:repeat(6,1fr); }
 .season-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .season-card {
@@ -233,7 +259,8 @@ h3 { font-size:17px; margin:0; }
 .food-list strong { display:block; color:var(--ink); font-size:16px; margin-bottom:4px; }
 
 @media(max-width:820px) {
-  .site-header { flex-direction:column; align-items:flex-start; gap:8px; }
+  .site-header { flex-wrap:wrap; gap:8px 12px; }
+  .site-nav { margin-left:0; width:100%; }
   .quick-facts { grid-template-columns:1fr 1fr; }
   .day-tabs { grid-template-columns:repeat(5,minmax(96px,1fr)); overflow-x:auto; padding-bottom:4px; }
   .day-tabs-6 { grid-template-columns:repeat(6,minmax(96px,1fr)); }
@@ -244,7 +271,7 @@ h3 { font-size:17px; margin:0; }
 @media(max-width:640px) {
   .site-header { min-height:0; padding:16px 20px 8px; }
   .brand-en { display:none; }
-  .site-nav { margin-left:-12px; }
+  .site-nav { margin-left:-12px; width:calc(100% + 12px); }
   main { padding:0 20px; }
   .intro { padding:32px 0 26px; }
   .mobile-break { display:block; }

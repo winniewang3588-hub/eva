@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1d2a44">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="東京自由行">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="九州自由行指南：六天北九州路線、四季玩法、溫泉與區域介紹、新幹線與周遊券、必吃美食與旅行提醒。">
+  <title>九州自由行指南｜溫泉與美食之旅</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <script defer src="./kyushu.js"></script>
+  <script defer src="./menu.js"></script>
+  <script defer src="./pwa.js"></script>
+</head>
+<body class="page-kyushu">
+  <a class="skip-link" href="#itinerary">跳到行程規劃</a>
+  <header class="site-header">
+    <a class="brand" href="./kyushu.html"><span class="brand-mark" aria-hidden="true">♨</span>九州自由行<span class="brand-en">KYUSHU FREE TRIP</span></a>
+    <details class="place-menu">
+      <summary aria-label="選擇地點，目前：九州"><span aria-hidden="true">📍</span>九州<span class="place-caret" aria-hidden="true">▾</span></summary>
+      <ul><li><a href="./index.html">東京<span>TOKYO</span></a></li><li><a href="./hokkaido.html">北海道<span>HOKKAIDO</span></a></li><li><a href="./kyushu.html" aria-current="page">九州<span>KYUSHU</span></a></li></ul>
+    </details>
+    <nav class="site-nav" aria-label="頁面導覽">
+      <a href="#itinerary">行程</a><a href="#seasons">四季</a><a href="#areas">區域</a><a href="#transport">交通</a><a href="#food">美食</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">KYUSHU · INDEPENDENT TRAVEL</p>
+      <h1 id="page-title">九州自由行，<br class="mobile-break">泡湯吃拉麵剛剛好。</h1>
+      <p class="intro-copy">從博多的屋台、由布院與別府的溫泉，到熊本城和長崎的港町風景。九州離台灣近、新幹線串連方便，很適合第一次自己規劃的日本旅行。</p>
+      <dl class="quick-facts">
+        <div><dt>主要機場</dt><dd>福岡（離市區很近）</dd></div>
+        <div><dt>面積</dt><dd>與台灣差不多大</dd></div>
+        <div><dt>夏季</dt><dd>濕熱，福岡均溫約 28°C</dd></div>
+        <div><dt>冬季</dt><dd>福岡均溫約 7°C，山區會下雪</dd></div>
+      </dl>
+      <div class="pwa-tools" aria-label="安裝與更新">
+        <button id="install-button" class="secondary-button" type="button" hidden>安裝到主畫面</button>
+        <p id="install-help" class="field-hint">可從瀏覽器選單安裝，旅途中離線也能查看；iPhone 請用 Safari「分享」→「加入主畫面」。</p>
+      </div>
+      <div id="update-notice" class="pwa-update" role="status" hidden>
+        <p>指南有新版本，更新後會重新載入頁面。</p>
+        <button id="update-button" class="secondary-button" type="button">更新指南</button>
+      </div>
+      <p id="pwa-message" class="field-hint" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <section id="itinerary" class="panel" aria-labelledby="itinerary-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><div><h2 id="itinerary-title">六天北九州經典路線</h2><p>福岡、太宰府、柳川、由布院、別府、熊本；以 JR 與西鐵串連</p></div></div>
+      <div id="day-tabs" class="day-tabs day-tabs-6" role="tablist" aria-label="選擇天數"></div>
+      <div id="day-panel" class="day-panel" role="tabpanel" tabindex="0"></div>
+      <noscript><p class="message">請開啟 JavaScript 以切換每日行程。</p></noscript>
+    </section>
+
+    <section id="seasons" class="list-section" aria-labelledby="seasons-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div><h2 id="seasons-title">四季怎麼玩</h2><p>花期與活動日期每年不同，出發前請查當年資訊</p></div></div>
+      <div class="season-grid">
+        <article class="season-card season-spring">
+          <h3><span aria-hidden="true">🌸</span> 春｜3–5 月</h3>
+          <p>櫻花多在 3 月下旬到 4 月上旬，比東京略早；氣候舒適，是很適合走透透的季節。</p>
+          <p class="season-wear"><strong>穿著</strong>長袖加薄外套，早晚溫差大。</p>
+        </article>
+        <article class="season-card season-summer">
+          <h3><span aria-hidden="true">☀️</span> 夏｜6–8 月</h3>
+          <p>6 月到 7 月中是梅雨季，之後轉為炎熱。7 月博多祇園山笠、各地煙火大會很熱鬧；阿蘇草原一片翠綠。</p>
+          <p class="season-wear"><strong>穿著</strong>透氣短袖、帽子與雨具；注意防曬與補水。</p>
+        </article>
+        <article class="season-card season-autumn">
+          <h3><span aria-hidden="true">🍁</span> 秋｜9–11 月</h3>
+          <p>8–9 月是颱風較多的時期，行程保留彈性。11 月紅葉最美，耶馬溪、高千穗峽、九重夢大吊橋都是熱門賞楓地。</p>
+          <p class="season-wear"><strong>穿著</strong>薄長袖到毛衣，11 月山區已有寒意。</p>
+        </article>
+        <article class="season-card season-winter">
+          <h3><span aria-hidden="true">♨️</span> 冬｜12–2 月</h3>
+          <p>平地少下雪，相對溫和；最適合泡湯的季節，由布院、黑川、別府的露天溫泉特別有氣氛。</p>
+          <p class="season-wear"><strong>穿著</strong>厚外套即可；阿蘇等山區可能結冰下雪，自駕要注意。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="areas" class="list-section" aria-labelledby="areas-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div><h2 id="areas-title">區域指南</h2><p>依旅行興趣挑選要去的地方</p></div></div>
+      <div id="area-filters" class="filters" role="group" aria-label="依興趣篩選區域"></div>
+      <p id="area-message" class="filter-message" role="status" aria-live="polite" aria-atomic="true"></p>
+      <ul id="area-list" class="area-list" aria-label="九州區域清單"></ul>
+    </section>
+
+    <section id="transport" class="panel" aria-labelledby="transport-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div><h2 id="transport-title">交通攻略</h2><p>時間為大約值，出發前請以官方時刻表為準</p></div></div>
+      <div class="transport-grid">
+        <article class="info-card">
+          <h3>福岡機場 → 博多・天神</h3>
+          <ul>
+            <li><strong>國際線航廈</strong>：搭巴士到博多站約 15–20 分鐘；也可先搭免費接駁車到國內線航廈。</li>
+            <li><strong>國內線航廈</strong>：地下鐵到博多站約 5 分鐘、到天神約 11 分鐘。</li>
+            <li>機場離市區非常近，回程不用太早出門，但國際線仍建議起飛前 2–3 小時抵達。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>新幹線與 JR 特急</h3>
+          <ul>
+            <li><strong>九州新幹線</strong>：博多 → 熊本約 35–50 分鐘、→ 鹿兒島中央最快約 1.5 小時。</li>
+            <li><strong>西九州新幹線</strong>：往長崎需在武雄溫泉轉乘，博多出發約 1.5 小時。</li>
+            <li><strong>觀光列車</strong>：「由布院之森」等列車本身就是旅程亮點，通常需要劃位。</li>
+            <li>移動多時可比較 JR 九州的外國旅客周遊券（北九州／南九州／全九州）。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>西鐵與高速巴士</h3>
+          <ul>
+            <li><strong>西鐵電車</strong>：天神出發往太宰府、柳川最方便，有兩地合併的優惠套票。</li>
+            <li><strong>高速巴士</strong>：往由布院、黑川溫泉等地常比鐵路直達。</li>
+            <li><strong>SUNQ PASS</strong>：一段時間內可搭乘九州大部分高速與路線巴士，適合巴士為主的行程。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>自駕租車</h3>
+          <ul>
+            <li>阿蘇、黑川溫泉、高千穗等山區景點，大眾運輸班次少，自駕最自由。</li>
+            <li>持台灣駕照需另備<strong>日文譯本</strong>（可向監理單位申請），租車時兩者都要帶。</li>
+            <li>日本靠左行駛；颱風或大雨時山路可能封閉，出發前查路況。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="food" class="list-section" aria-labelledby="food-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div><h2 id="food-title">必吃美食</h2><p>九州七縣，各有招牌</p></div></div>
+      <ul class="food-list">
+        <li><strong>博多豚骨拉麵</strong>細麵配濃郁豚骨湯，可選麵條軟硬度，吃完還能「加麵」。</li>
+        <li><strong>牛腸鍋・明太子</strong>福岡代表美食；牛腸鍋有醬油、味噌等口味，最後加麵收尾。</li>
+        <li><strong>屋台</strong>中洲、天神一帶的路邊小攤，拉麵、關東煮、烤串都有，晚上才出現。</li>
+        <li><strong>長崎強棒麵</strong>豬骨湯加滿海鮮與蔬菜；長崎蜂蜜蛋糕也是必買伴手禮。</li>
+        <li><strong>熊本馬肉・太平燕</strong>馬肉刺身是熊本名物；太平燕是加了冬粉的什錦湯麵。</li>
+        <li><strong>鹿兒島黑豬・白熊冰</strong>黑豬肉涮涮鍋與豬排，飯後來一碗加滿水果的白熊刨冰。</li>
+      </ul>
+    </section>
+
+    <section class="list-section" aria-labelledby="tips-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">06</span><div><h2 id="tips-title">旅行小提醒</h2><p>玩得開心也玩得安心</p></div></div>
+      <ul class="tips">
+        <li><strong>屋台禮儀</strong>座位少，吃完就讓位給下一位客人；不少攤位只收現金。</li>
+        <li><strong>溫泉禮儀</strong>先洗淨身體再入池，毛巾不要放進池裡；有刺青可能會被拒絕入場，可找包租湯。</li>
+        <li><strong>由布院住一晚</strong>白天一日遊人潮多，住一晚可以享受清晨霧氣中的金鱗湖。</li>
+        <li><strong>颱風與大雨</strong>梅雨季與颱風季可能停駛，行程保留彈性，關注 JR 九州的運行資訊。</li>
+        <li><strong>櫻島火山灰</strong>鹿兒島偶爾會有降灰，可準備口罩與眼鏡，留意當地火山資訊。</li>
+        <li><strong>地獄只能看</strong>別府「地獄」溫度非常高，請待在步道與圍欄內，不要觸碰泉水。</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer">願你在九州泡得舒服、吃得滿足。<span>內容僅供參考，票價、時刻、花期與活動日期請以官方公告為準。</span></footer>
+</body>
+</html>
