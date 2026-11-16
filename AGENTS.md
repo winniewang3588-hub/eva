@@ -2,7 +2,7 @@
 
 ## 專案現況
 
-東京自由行指南，採純 HTML、CSS、JavaScript；首頁為根目錄 `index.html`，可直接以 GitHub Pages 發布，無建置步驟、無資料庫與外部 API。行程、區域等內容資料寫在 `app.js`；行前清單勾選狀態只存在瀏覽器 localStorage。`文件/`、`supabase/` 與 `報修需求筆記.txt` 為先前報修系統的舊交付檔，現行網站不使用，不要在前端開發時執行 `supabase/schema.sql`。
+東京自由行指南，採純 HTML、CSS、JavaScript；首頁為根目錄 `index.html`，可直接以 GitHub Pages 發布，無建置步驟、無資料庫與外部 API。東京篇為首頁、北海道篇為 `hokkaido.html`，內容資料分別寫在 `app.js`、`hokkaido.js`；行前清單勾選狀態只存在瀏覽器 localStorage。`文件/`、`supabase/` 與 `報修需求筆記.txt` 為先前報修系統的舊交付檔，現行網站不使用，不要在前端開發時執行 `supabase/schema.sql`。
 
 ## 溝通與工作方式
 
@@ -24,7 +24,7 @@
 ## 驗證與交付
 
 - 本機預覽：儲存庫根目錄執行 `python3 -m http.server 8000`。
-- 已驗證語法指令：`node --check app.js`；差異檢查：`git diff --check`。
+- 已驗證語法指令：`node --check app.js`、`node --check hokkaido.js`；差異檢查：`git diff --check`。
 - PWA 需另檢查 `node --check pwa.js`、`node --check sw.js`，並用真正的 Service Worker 驗證根目錄／子路徑、離線重開、更新待命與快取清理。
 - 瀏覽器驗證應涵蓋手機版與桌機版版面、行程分頁鍵盤操作、區域篩選、預算試算（含錯誤輸入）及行前清單保存與重設。
 - 完成時簡述變更、驗證結果與限制，清楚區分本機測試與 GitHub Pages 部署狀態。

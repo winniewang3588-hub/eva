@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1d2a44">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="東京自由行">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="北海道自由行指南：六天經典路線、四季玩法、區域介紹、交通與自駕、必吃美食與旅行提醒。">
+  <title>北海道自由行指南｜四季都好玩</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <script defer src="./hokkaido.js"></script>
+  <script defer src="./pwa.js"></script>
+</head>
+<body class="page-hokkaido">
+  <a class="skip-link" href="#itinerary">跳到行程規劃</a>
+  <header class="site-header">
+    <a class="brand" href="./hokkaido.html"><span class="brand-mark" aria-hidden="true">❄</span>北海道自由行<span class="brand-en">HOKKAIDO FREE TRIP</span></a>
+    <nav class="site-nav" aria-label="頁面導覽">
+      <a href="#itinerary">行程</a><a href="#seasons">四季</a><a href="#areas">區域</a><a href="#transport">交通</a><a href="#food">美食</a>
+      <a class="nav-switch" href="./index.html">東京篇 →</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">HOKKAIDO · INDEPENDENT TRAVEL</p>
+      <h1 id="page-title">北海道自由行，<br class="mobile-break">四季都有理由出發。</h1>
+      <p class="intro-copy">夏天的薰衣草花田、冬天的雪祭與溫泉，加上新鮮海鮮和拉麵。北海道幅員廣大，景點之間距離遠，先排好路線，旅程才不會一直在趕車。</p>
+      <dl class="quick-facts">
+        <div><dt>主要機場</dt><dd>新千歲（札幌近郊）</dd></div>
+        <div><dt>面積</dt><dd>約台灣的 2.3 倍</dd></div>
+        <div><dt>夏季均溫</dt><dd>約 20°C 上下，早晚涼</dd></div>
+        <div><dt>冬季均溫</dt><dd>札幌約 −3°C，內陸更冷</dd></div>
+      </dl>
+      <div class="pwa-tools" aria-label="安裝與更新">
+        <button id="install-button" class="secondary-button" type="button" hidden>安裝到主畫面</button>
+        <p id="install-help" class="field-hint">可從瀏覽器選單安裝，旅途中離線也能查看；iPhone 請用 Safari「分享」→「加入主畫面」。</p>
+      </div>
+      <div id="update-notice" class="pwa-update" role="status" hidden>
+        <p>指南有新版本，更新後會重新載入頁面。</p>
+        <button id="update-button" class="secondary-button" type="button">更新指南</button>
+      </div>
+      <p id="pwa-message" class="field-hint" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <section id="itinerary" class="panel" aria-labelledby="itinerary-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><div><h2 id="itinerary-title">六天道央經典路線</h2><p>札幌、小樽、旭川、美瑛、富良野；夏季最推薦，冬季也可走</p></div></div>
+      <div id="day-tabs" class="day-tabs day-tabs-6" role="tablist" aria-label="選擇天數"></div>
+      <div id="day-panel" class="day-panel" role="tabpanel" tabindex="0"></div>
+      <noscript><p class="message">請開啟 JavaScript 以切換每日行程。</p></noscript>
+    </section>
+
+    <section id="seasons" class="list-section" aria-labelledby="seasons-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div><h2 id="seasons-title">四季怎麼玩</h2><p>花期與活動日期每年不同，出發前請查當年資訊</p></div></div>
+      <div class="season-grid">
+        <article class="season-card season-spring">
+          <h3><span aria-hidden="true">🌸</span> 春｜4–5 月</h3>
+          <p>櫻花比東京晚約一個月，札幌多在 4 月底到 5 月上旬。殘雪與新綠並存，遊客相對少。</p>
+          <p class="season-wear"><strong>穿著</strong>薄羽絨或防風外套，早晚仍接近冬天。</p>
+        </article>
+        <article class="season-card season-summer">
+          <h3><span aria-hidden="true">💜</span> 夏｜6–8 月</h3>
+          <p>最熱門的季節。富良野薰衣草通常 7 月中旬最盛，美瑛丘陵一片花海，氣候涼爽適合避暑。</p>
+          <p class="season-wear"><strong>穿著</strong>短袖加薄外套；花季住宿與租車請提早訂。</p>
+        </article>
+        <article class="season-card season-autumn">
+          <h3><span aria-hidden="true">🍁</span> 秋｜9–10 月</h3>
+          <p>大雪山 9 月中下旬就開始轉紅，平地紅葉約 10 月中下旬；也是鮭魚、螃蟹等秋季美食的季節。</p>
+          <p class="season-wear"><strong>穿著</strong>毛衣加外套，10 月底山區可能已下雪。</p>
+        </article>
+        <article class="season-card season-winter">
+          <h3><span aria-hidden="true">⛄</span> 冬｜12–3 月</h3>
+          <p>札幌雪祭通常在 2 月上旬，二世古等地有世界級粉雪；道東 2 月有機會看到流冰。</p>
+          <p class="season-wear"><strong>穿著</strong>羽絨外套、毛帽手套、防滑雪靴；室內暖氣強，採洋蔥式穿法。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="areas" class="list-section" aria-labelledby="areas-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div><h2 id="areas-title">區域指南</h2><p>依出發季節，找出最值得去的地方</p></div></div>
+      <div id="area-filters" class="filters" role="group" aria-label="依季節篩選區域"></div>
+      <p id="area-message" class="filter-message" role="status" aria-live="polite" aria-atomic="true"></p>
+      <ul id="area-list" class="area-list" aria-label="北海道區域清單"></ul>
+    </section>
+
+    <section id="transport" class="panel" aria-labelledby="transport-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div><h2 id="transport-title">交通與自駕</h2><p>時間為大約值，出發前請以官方時刻表為準</p></div></div>
+      <div class="transport-grid">
+        <article class="info-card">
+          <h3>新千歲機場 → 札幌</h3>
+          <ul>
+            <li><strong>JR 快速 Airport</strong>：到札幌站約 40 分鐘，班次密集，最常用。</li>
+            <li><strong>機場巴士</strong>：可直達薄野與部分飯店，行李多時方便。</li>
+            <li>新千歲機場本身就有拉麵街與大量伴手禮，回程可預留時間逛。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>JR 城市間移動</h3>
+          <ul>
+            <li><strong>札幌 ↔ 小樽</strong>：約 35–50 分鐘，適合一日遊。</li>
+            <li><strong>札幌 ↔ 旭川</strong>：特急約 1.5 小時；旭川再轉往美瑛、富良野。</li>
+            <li><strong>札幌 ↔ 函館</strong>：特急約 3.5–4 小時，建議住一晚以上。</li>
+            <li>長距離移動多時，可比較 JR 北海道的外國旅客周遊券是否划算。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>自駕租車</h3>
+          <ul>
+            <li>美瑛、富良野、道東景點分散、班次少，自駕最自由。</li>
+            <li>持台灣駕照需另備<strong>日文譯本</strong>（可向監理單位申請），租車時兩者都要帶。</li>
+            <li>日本靠左行駛；郊區常有鹿或狐狸穿越，夜間放慢速度。</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>冬季移動注意</h3>
+          <ul>
+            <li>雪道與結冰路面難開，不熟雪地駕駛建議改搭 JR 或參加巴士行程。</li>
+            <li>大雪可能造成 JR 停駛或航班延誤，行程留一點彈性。</li>
+            <li>冬天約下午 4 點就天黑，戶外景點盡量排在白天。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="food" class="list-section" aria-labelledby="food-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div><h2 id="food-title">必吃美食</h2><p>來北海道，胃要留空間</p></div></div>
+      <ul class="food-list">
+        <li><strong>湯咖哩</strong>札幌發源，大塊蔬菜與雞腿浸在香料湯裡，可選辣度。</li>
+        <li><strong>味噌拉麵</strong>札幌代表口味；旭川醬油、函館鹽味也各有擁護者。</li>
+        <li><strong>成吉思汗烤肉</strong>在中間凸起的鐵鍋上烤羊肉，搭配蔬菜一起吃。</li>
+        <li><strong>海鮮丼</strong>海膽、鮭魚卵、螃蟹；函館朝市、札幌二條市場一早就開。</li>
+        <li><strong>帝王蟹・毛蟹</strong>各大市場與螃蟹專門店都吃得到，價格依季節變動。</li>
+        <li><strong>乳製品甜點</strong>霜淇淋、起司蛋糕、白色巧克力餅乾，牛奶風味特別濃。</li>
+      </ul>
+    </section>
+
+    <section class="list-section" aria-labelledby="tips-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">06</span><div><h2 id="tips-title">旅行小提醒</h2><p>北海道和東京玩法很不一樣</p></div></div>
+      <ul class="tips">
+        <li><strong>別低估距離</strong>地圖上看起來很近，開車可能要 2 小時；一天排 2–3 個區域就好。</li>
+        <li><strong>冬天穿防滑鞋</strong>人行道常結冰，雪靴或加裝鞋底冰爪可以少摔很多次。</li>
+        <li><strong>野生動物</strong>山區與步道可能有熊出沒，注意現場告示，不要餵食任何野生動物。</li>
+        <li><strong>拍照守規矩</strong>美瑛花田多為私人農地，請勿走進田裡，以免損害作物。</li>
+        <li><strong>溫泉禮儀</strong>先洗淨身體再入池，毛巾不要放進池裡；有刺青可能會被拒絕入場。</li>
+        <li><strong>旺季提早訂</strong>7 月花季與 2 月雪祭期間，住宿與租車常常提早客滿。</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer">願你在北海道看到想看的風景。<span>內容僅供參考，票價、時刻、花期與活動日期請以官方公告為準。</span></footer>
+</body>
+</html>
